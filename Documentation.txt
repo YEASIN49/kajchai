@@ -1,0 +1,26 @@
+# KAJCHAI
+It is an online job portal with a role based feature for both job provided and job seeker.
+
+## Technology
+PHP, MySql, HTML5, CSS3, Javascript, Bootstrap-v4.6, Jquery
+
+## Step to Run The Project
+1. Install XAMPP.
+2. Go to C:/xampp/htdocs/yourFolder and then paste all the source files.
+3. Open Xampp control panel and start Apache and MySql
+4. Open any browser and type localhost/yourFolder in the browser url box.
+
+## Features
+1. login, Registration.
+2. Job seeker can view all the jobs.
+3. Job seeker can apply jobs by submitting their CV file.
+4. Job seeker can search jobs by catagory and location.
+5. Job seeker can view all of their applied jobs.
+6. Job provider can post a new job.
+7. Job provider can see all the job seekers applied for the job.
+8. Job provider can see all the job list the he posted.
+9. job provider can delete job post at any time.
+10.Job provider can see CV's of job seeker.
+
+## Current Work 
+1. Homepage including job list , Login Modals under PHP using HTMl5, CSS3, Bootstrap-v4.6, Javascript
