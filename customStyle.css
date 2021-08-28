@@ -56,15 +56,23 @@ html {
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
 }
 .customBtn {
+  color: #ffffff;
   height: 60px;
   width: 120px;
   font-weight: 600;
   font-size: 14px;
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 10px 10px 15px rgba(214, 200, 200, 0.1);
+}
+.customBtn:hover {
+  background-color: #0de67d;
+  color: #2b3940;
 }
 .green {
   background-color: #07b278;
   color: aliceblue;
+}
+.green-light {
+  background-color: #21bf73;
 }
 
 /* *****************************
@@ -143,6 +151,15 @@ html {
 .btn-apply {
   left: 50%;
 }
+
+/* *******************************
+**
+**
+**    Register
+**
+**
+******************************** */
+
 @media (max-width: 768px) {
   .hero-text {
     top: 20%;

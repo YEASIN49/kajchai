@@ -13,14 +13,22 @@
         <a class="nav-link" href="appliedJob.php">APPLIED JOB</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">POSTED JOB</a>
+        <a class="nav-link" href="postedJob.php">POSTED JOB</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModalCenter" href="#">LOGIN</a>
+        <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="">LOGIN</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">SIGNUP</a>
+        <a class="nav-link" data-toggle="modal" data-target="#registerModal" href="#">SIGNUP</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="modal"  href="logout.php">LOG OUT</a>
+      </li>
+      <script>
+        // $('#loginModal').modal('toggle');
+        // $('#registerModal').modal('toggle');
+
+      </script>
       <!-- <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown

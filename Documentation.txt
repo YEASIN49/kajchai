@@ -6,7 +6,7 @@ PHP, MySql, HTML5, CSS3, Javascript, Bootstrap-v4.6, Jquery
 
 ## Step to Run The Project
 1. Install XAMPP.
-2. Go to C:/xampp/htdocs/yourFolder and then paste all the source files.
+2. Go to C:/xampp/htdocs/yourFolder and then paste all the source files. Source Files are also available at https://github.com/YEASIN49/kajchai
 3. Open Xampp control panel and start Apache and MySql
 4. Open any browser and type localhost/yourFolder in the browser url box.
 
@@ -23,4 +23,4 @@ PHP, MySql, HTML5, CSS3, Javascript, Bootstrap-v4.6, Jquery
 10.Job provider can see CV's of job seeker.
 
 ## Current Work 
-1. Homepage including job list , Login Modals under PHP using HTMl5, CSS3, Bootstrap-v4.6, Javascript
+1. Static Homepage including job list , Dummy Login Modals under PHP using HTMl5, CSS3, Bootstrap-v4.6, Javascript
