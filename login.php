@@ -19,27 +19,34 @@
 			$result=$conn->query($sqlQuery);
 
 			if ($row= $result->fetch_assoc()) {
+				global $roletype;
 				echo '<script>alert("Logged In")<script>';
-				// $_SESSION['is_login'] = true;
+				$_SESSION['id'] = $row['id'];
+				$_SESSION['name'] = $row['name'];
+				$_SESSION['role'] = $roletype;
 				$_SESSION['email'] = $_POST['email']; 
 				// echo '<script>alert("Logged In")<script>';
 				// header('Location: postedJob.php');
+				// echo ;
 				echo '<script>alert("Logged In")</script>';
-				die("<script>alert('Logged In Successfull')</script>");
-				exit();
+				// die('<pre>' . print_r($_SESSION, TRUE) . '</pre'); //this is to show all the session variable
+				die("<script>alert('Successfully Logged In');
+					location.replace('index.php');
+				</script>");
+				// exit();
 			}else{
 				echo '<script>alert("Log In Failed")</script>';
 			}
 
 		}
 
-		if($roletype == 'employee'){
-			$sql = "SELECT * FROM user WHERE email='$email' and password = '$password'";
+		if($roletype == 'user'){
+			$sql = "SELECT * FROM user WHERE email='$email' and password = '$password' and roletype= '$roletype'";
 			runLoginQuery($sql);
 
 		}
 		elseif($roletype == 'employer'){
-			$sql = "SELECT * FROM employers WHERE email='$email' and password = '$password'";
+			$sql = "SELECT * FROM employers WHERE email='$email' and password = '$password' and roletype= '$roletype'";
 			runLoginQuery($sql);
 		}
 		// echo `<script>console.log("test"+'$email')<script>`;
@@ -76,9 +83,9 @@
 					<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 				</div>
         <div class="form-group">
-					<input type="radio"  name="role" value="employee">
-					<label for="user" name="employee">Employee</label><br>
-					<input type="radio"  name="role" value="employer">
+					<input type="radio" id="user" name="role" value="user">
+					<label for="user" name="user">User</label><br>
+					<input type="radio" id="employer"  name="role" value="employer">
 					<label for="employer" name="employer">Employer</label><br>	
 				</div>
 				<!-- <div class="form-check">

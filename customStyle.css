@@ -22,15 +22,26 @@ html {
   font-weight: 800;
   color: #2b3940;
 }
-.navbar-bg {
+/* .navbar-bg {
   background-color: ;
-}
+} */
 .navbar-nav .nav-item .nav-link {
   font-weight: 600;
   font-size: 13.5px;
   color: #2b3940;
   line-height: 19px;
   letter-spacing: normal;
+}
+.navbar-nav .nav-item .nav-link.dropdown-toggle span {
+  /* position: relative; */
+  /* top: 0; */
+  /* color: #07b278; */
+  vertical-align: middle;
+  line-height: 19px;
+  /* height: 19px; */
+  /* width: 120px; */
+  /* background-color: aqua; */
+  display: inline-block;
 }
 /* *****************************
 **

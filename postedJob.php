@@ -2,14 +2,14 @@
 
 include("includes/config.php");
 session_start();
-if(!isset($_SESSION['email'])){
-	die('<script>alert("Please Log In First");
+if(!isset($_SESSION['email']) or $_SESSION['role'] != 'employer'){
+	die('<script>alert("You are not allowed here ! Only employers are expected!");
 			location.replace("index.php");
 	</script>');
 	// echo '<script>alert("Please Log In First");</script>';
 	// header("location:index.php");
 }
-if(isset($_SESSION['email'])){
+if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 
 	if (isset($_POST['submit'])) {
 		# code...
@@ -22,8 +22,9 @@ if(isset($_SESSION['email'])){
 		$salary = $_POST['salary'];
 		$responsibility = $_POST['responsibility'];
 		$requirements = $_POST['requirements'];
+		$employer_id = $_SESSION['id'];
 	
-		$sql = "INSERT INTO `jobs`( `position`, `company`, `expertise`, `experience`, `type`, `salary`, `responsibility`, `requirements`) VALUES ('$position', '$company', '$expertise', '$experience', '$type', '$salary', '$responsibility', '$requirements')";
+		$sql = "INSERT INTO `jobs`( `position`, `company`, `expertise`, `experience`, `type`, `salary`, `responsibility`, `requirements`, `employer_id`) VALUES ('$position', '$company', '$expertise', '$experience', '$type', '$salary', '$responsibility', '$requirements', '$employer_id')";
 		// die($sql);
 		$result=$conn->query($sql);
 	
@@ -106,6 +107,11 @@ if(isset($_SESSION['email'])){
 		</div>			
 	</div>
 	<?php include("includes/footer.php")?>;
+	
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
 </body>
 <?php
 
