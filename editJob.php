@@ -14,6 +14,48 @@ $currentResponsibility = $_SESSION['editableJobResponsibility'];
 $currentRequirements = $_SESSION['editableJobRequirements'];
 
 
+
+if(!isset($_SESSION['email']) or $_SESSION['role'] != 'employer'){
+	die('<script>alert("You are not allowed here ! Only employers are expected!");
+			location.replace("index.php");
+	</script>');
+	// echo '<script>alert("Please Log In First");</script>';
+	// header("location:index.php");
+}
+if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
+	
+
+	if (isset($_POST['save'])) {
+
+		$position = $_POST['position'];
+		$company = $_POST['company'];
+		$expertise = $_POST['expertise'];
+		$experience = $_POST['experience'];
+		$type = $_POST['type'];
+		$salary = $_POST['salary'];
+		$responsibility = $_POST['responsibility'];
+		$requirements = $_POST['requirements'];
+		$employer_id = $_SESSION['id'];
+	
+		$sql = "UPDATE jobs
+			 SET position = '$position', company = '$company'	WHERE id = $currentID";
+		// die($sql);
+		$result=$conn->query($sql);
+	
+		if ($result) {
+			// header('Location: postedJob.php');
+			die("<script>alert('Job Updated Successfully');
+			location.replace('postedJob.php');
+			</script>");
+		}else{
+			echo 'Job Update Failed :(';
+		}
+	}
+	else{
+		echo "Fill all the field";
+	}
+
+
 // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 
 ?>
@@ -43,8 +85,8 @@ $currentRequirements = $_SESSION['editableJobRequirements'];
       </div>
       <div class="modal-body"> -->
 			
-			<div class="container pb-5">
-				<h2 class="mt-1 mb-4">SELECTED JOB DETAILS</h2>
+			<div class="container py-5">
+				<h2 class="mt-5 mb-4">SELECTED JOB DETAILS</h2>
 				<div class="row">
 					<div class="col-md-12">
 						<form action="" method="post">	
@@ -52,27 +94,27 @@ $currentRequirements = $_SESSION['editableJobRequirements'];
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Position :</label> 
-										<input class="form-control" type="text" name="position" value=<?php echo $currentPosition; ?>>
+										<input class="form-control" type="text" name="position" value="<?php echo $currentPosition; ?>">
 									</div>
 									<div class="form-group">
 										<label for="">Company Name :</label> 
-										<input class="form-control" type="text" name="company" value=<?php echo $currentCompany; ?>>
+										<input class="form-control" type="text" name="company" value="<?php echo $currentCompany; ?>">
 									</div>
 									<div class="form-group">
 										<label for="">Expertise Level :</label> 
-										<input class="form-control" type="text" name="expertise" value=<?php echo $currentExpertise; ?>>
+										<input class="form-control" type="text" name="expertise" value="<?php echo $currentExpertise; ?>">
 									</div>
 									<div class="form-group">
 										<label for="">Experience :</label> 
-										<input class="form-control" type="text" name="experience" value=<?php echo $currentExperience; ?>>
+										<input class="form-control" type="text" name="experience" value="<?php echo $currentExperience; ?>">
 									</div>
 									<div class="form-group">
 										<label for="">Type :</label> 
-										<input class="form-control" type="text" name="type" value=<?php echo $currentType; ?>>
+										<input class="form-control" type="text" name="type" value="<?php echo $currentType; ?>">
 									</div>
 									<div class="form-group">
 										<label for="">Salary :</label> 
-										<input class="form-control" type="text" name="salary" value=<?php echo $currentSalary; ?>>
+										<input class="form-control" type="text" name="salary" value="<?php echo $currentSalary; ?>">
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -89,7 +131,7 @@ $currentRequirements = $_SESSION['editableJobRequirements'];
 							</div>
 							<div class="row">
 								<div class="col-md-12">
-									<button type="submit" name="submit" style="width: 180px;" class="btn green-light customBtn">SAVE EDIT</button>
+									<button type="submit" name="save" style="width: 180px;" class="btn green-light customBtn">SAVE EDIT</button>
 									<button onclick="(function(){
 										location.replace('postedJob.php');
 										return false;
@@ -124,9 +166,9 @@ $currentRequirements = $_SESSION['editableJobRequirements'];
 <script>
 	document.getElementById('responsibility').innerHTML = <?php $currentResponsibility ?>;
 	document.getElementById('requirements').innerHTML = <?php $currentRequirements ?>;
-}
+
 </script>
 
 
-
+<?php } ?>
 </body>
