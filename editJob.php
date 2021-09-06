@@ -38,7 +38,7 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 		$employer_id = $_SESSION['id'];
 	
 		$sql = "UPDATE jobs
-			 SET position = '$position', company = '$company'	WHERE id = $currentID";
+			 SET position = '$position', company = '$company', expertise = '$expertise', experience = '$experience', type='$type', salary = '$salary', responsibility = '$responsibility', requirements = '$requirements' WHERE id = $currentID";
 		// die($sql);
 		$result=$conn->query($sql);
 	

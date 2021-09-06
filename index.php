@@ -1,6 +1,35 @@
 <?php 
 	session_start();
 	include("includes/config.php");
+
+	$allJobs;
+	// function fetchJobList(){
+	// 	global $allJobs;
+		global $conn;
+		// $email =$_SESSION["email"];
+		// $employer_id = $_SESSION["id"];
+		// $roletype = $_SESSION["role"];
+		$sqlSelect = "SELECT * FROM jobs";
+	
+		$allJobs=$conn->query($sqlSelect) or die('<script>alert("Log In Failed");</script>');
+		// echo ($result);
+		
+	
+				if (!empty($allJobs)){
+					echo ('("All job fetched")');
+				
+					// echo("HERE ");
+					// echo ($rows['position']);
+				}else{
+					echo '("Job Fetch Failed")';
+				}
+			
+	// }
+	// fetchJobList();
+	
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,11 +45,14 @@
 
 <body>
 
-<?php include("includes/navbar.php");
-		
+<?php 
+	include("includes/navbar.php");
+	// echo ($allJobs);	
 ?>
 
-
+<?php foreach ($allJobs as $row) { 
+    				// printf("%s (%s)\n", $row["id"], $row["position"]); 
+					 echo $row['id'];}?>
 
 <!--******************** 
 
@@ -71,76 +103,33 @@
 
 *********************************** -->
 
+
 <div class="jobListContainer my-5 mx-4 pt-5">
 	<h3 class="font-weight-bold text-center">EXPLORE ALL THE VACANCIES</h3>
 	<p class="text-center explore position-relative"><span class="material-icons">work_outline</span></p>
 
 	<div class="card-group pb-5 ">
-		<div class="card">
-			<!-- <img src="..." class="card-img-top" alt="..."> -->
-			<div class="card-body position-relative">
-				<p class="card-text"><small class="text-muted">xyz.com</small></p>
-				<h5 class="card-title font-weight-bold">Job title</h5>
-				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> 2-6 years</p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Expertise Level :</span> Senior</p>
-				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span><span class="text-muted">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</span></p>
-				<a class="btn card-btn green position-absolute" href="#" role="button">VIEW JOB</a>
-				<a class="btn card-btn btn-apply green  position-absolute" href="#" role="button">APPLY</a>
-				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-			</div>
-		</div>
+		
+		<?php foreach ($allJobs as $row) { 
+    				// printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
 		<div class="card">
 			<!-- <img src="..." class="card-img-top" alt="..."> -->
 			<div class="card-body">
-				<p class="card-text"><small class="text-muted">xyz.com</small></p>
-				<h5 class="card-title font-weight-bold">Job title</h5>
-				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> 2-6 years</p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Expertise Level :</span> Senior</p>
-				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span>This card has supporting text below as a natural lead-in to additional content.</p>
+			
+				<p class="card-text"><small class="text-muted"><?php echo ($row['company']); ?></small></p>
+				<h5 class="card-title font-weight-bold"><?php echo ($row['position']); ?></h5>
+				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> <?php echo ($row['experience']); ?></p>
+				<p class="card-text mb-0"><span style="font-weight: 500">Expertise Level :</span> <?php echo ($row['expertise']); ?></p>
+				<p class="card-text mb-2"><span style="font-weight: 500">Salary :</span> <?php echo ($row['salary']); ?></p>
+				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span><?php echo ($row['requirements']); ?></p>
 				<a class="btn card-btn green position-absolute" href="#" role="button">VIEW JOB</a>
 				<a class="btn card-btn btn-apply green  position-absolute" href="#" role="button">APPLY</a>
 				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+			
 			</div>
 		</div>
-		<div class="card">
-			<!-- <img src="..." class="card-img-top" alt="..."> -->
-			<div class="card-body">
-				<p class="card-text"><small class="text-muted">xyz.com</small></p>
-				<h5 class="card-title font-weight-bold">Job title</h5>
-				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> 2-6 years</p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Expertise Level :</span> Senior</p>
-				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				<a class="btn card-btn green position-absolute" href="#" role="button">VIEW JOB</a>
-				<a class="btn card-btn btn-apply green  position-absolute" href="#" role="button">APPLY</a>
-				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-			</div>
-		</div>
-		<div class="card">
-			<!-- <img src="..." class="card-img-top" alt="..."> -->
-			<div class="card-body">
-				<p class="card-text"><small class="text-muted">xyz.com</small></p>
-				<h5 class="card-title font-weight-bold">Job title</h5>
-				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> 2-6 years</p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Expertise Level :</span> Senior</p>
-				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				<a class="btn card-btn green position-absolute" href="#" role="button">VIEW JOB</a>
-				<a class="btn card-btn btn-apply green  position-absolute" href="#" role="button">APPLY</a>
-				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-			</div>
-		</div>
-		<div class="card">
-			<!-- <img src="..." class="card-img-top" alt="..."> -->
-			<div class="card-body">
-				<p class="card-text"><small class="text-muted">xyz.com</small></p>
-				<h5 class="card-title font-weight-bold">Job title</h5>
-				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> 2-6 years</p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Expertise Level :</span> Senior</p>
-				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span>This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				<a class="btn card-btn green position-absolute" href="#" role="button">VIEW JOB</a>
-				<a class="btn card-btn btn-apply green  position-absolute" href="#" role="button">APPLY</a>
-				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-			</div>
-		</div>
+		<?php } ?>
+		
 	</div>
 </div>
 
