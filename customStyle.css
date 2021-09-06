@@ -5,6 +5,29 @@ html {
   height: 100%;
   background-color: #ffffff;
 }
+::-webkit-scrollbar {
+  /*height: 15px; /* height of horizontal scrollbar ← You're missing this */
+  /*width: 15x; /* width of vertical scrollbar */
+  /* border: 2px solid #8881816c; */
+  /* color: #07b278; */
+  /* background-color: #f0f0f0; */
+  background: linear-gradient(to right, #838383ad, #f0f0f0, #838383ad);
+}
+
+::-webkit-scrollbar-thumb:vertical,
+::-webkit-scrollbar-thumb:horizontal {
+  background: rgb(34, 31, 31);
+  border-radius: 10px;
+  /* width: 20px; */
+  /* color: linear-gradient(to top, #838383ad, #f0f0f0, #838383ad); */
+}
+
+::-webkit-scrollbar-track:horizontal {
+  background: linear-gradient(to top, #838383ad, #f0f0f0, #838383ad);
+  border-radius: 10px;
+  /* border: 3px solid green; */
+  /* box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.125); */
+}
 /* .navbar {
   position: sticky;
   top: 100%;
@@ -166,10 +189,14 @@ html {
 /* *******************************
 **
 **
-**    Register
+**    Posted Job Page
 **
 **
 ******************************** */
+.job-table th,
+.job-table td {
+  padding: 12px 5px;
+}
 
 @media (max-width: 768px) {
   .hero-text {

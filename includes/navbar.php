@@ -20,9 +20,9 @@
       <!-- <li class="nav-item">
         <a class="nav-link"   href="logout.php">LOG OUT</a>
       </li> -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="appliedJob.php">APPLIED JOB</a>
-      </li>
+      </li> -->
       
       <!-- <li class="nav-item">
         <a class="nav-link" href="postedJob.php">POSTED JOB</a>
