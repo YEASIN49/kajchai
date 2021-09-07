@@ -169,6 +169,32 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 
 </script>
 
+<script>
+	// this part is copied to other pages. FUture Work : make a js file and code all common js there and import where needed
+	const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+	console.log(vw > 768);
+	if(vw > 768){
+		window.onscroll = function() {enableNavBg()};
+
+		function enableNavBg() {
+			let navbar = document.querySelector(".navbar");
+			if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
+			
+				console.log(navbar)
+				navbar.classList.add("bg-light");
+				navbar.classList.remove("bg-transparent");
+				//  navbar.classList.toggle("bg-primary");
+			} 
+			else {
+				navbar.classList.add("bg-transparent");
+				navbar.classList.remove("bg-light");
+			}
+
+		}
+
+	}
+</script>
+
 
 <?php } ?>
 </body>

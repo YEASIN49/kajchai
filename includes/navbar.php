@@ -1,5 +1,5 @@
 
-<nav class="navbar fixed-top navbar-expand-md navbar-light bg-transparent">
+<nav class="navbar fixed-top navbar-expand-md navbar-light">
   <a class="navbar-brand p-2 ml-md-4" href="index.php">KAJCHAI</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

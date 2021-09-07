@@ -40,6 +40,10 @@ html {
 *
 ****************************** */
 
+.navbar.navbar-expand-md {
+  background-color: none;
+}
+
 .navbar-brand {
   font-size: large;
   font-weight: 800;
@@ -198,7 +202,28 @@ html {
   padding: 12px 5px;
 }
 
+/* *******************************
+**
+**
+**    View Job Page
+**
+**
+******************************** */
+.jobContainer {
+  border-radius: 15px;
+  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.125);
+}
+
 @media (max-width: 768px) {
+  .navbar.navbar-expand-md {
+    background-color: #f0f0f0;
+  }
+  .nav-item {
+    text-align: center;
+  }
+  .dropdown-item {
+    text-align: center;
+  }
   .hero-text {
     top: 20%;
     left: 50%;
