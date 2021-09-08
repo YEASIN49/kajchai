@@ -1,6 +1,64 @@
 <?php
 include("includes/config.php");
 session_start();
+
+
+if(!isset($_SESSION['email']) or $_SESSION['role'] != 'user'){
+	die('<script>alert("You are not allowed here ! Only employees are expected!");
+			location.replace("index.php");
+	</script>');
+}
+
+$allJobs;
+if(isset($_SESSION['email']) and $_SESSION['role'] == 'user'){
+
+	
+	function fetchJobList(){
+		global $allJobs;
+		global $conn;
+		$email =$_SESSION["email"];
+		$employer_id = $_SESSION["id"];
+		$roletype = $_SESSION["role"];
+		$sqlSelect = "SELECT DISTINCT application.job_id,application.user_id, jobs.position, jobs.company, jobs.expertise, jobs.experience, jobs.type, jobs.salary 
+		FROM ((application 
+			INNER JOIN user ON application.user_id = $employer_id)
+				 INNER JOIN jobs ON application.job_id=jobs.id)"; 
+				
+
+		$allJobs=$conn->query($sqlSelect) or die('<script>alert("Log In Failed");</script>');
+		// echo ($result);
+		
+
+			if (!empty($allJobs)){
+				// echo ('("All job fetched")');
+			
+				
+			}else{
+				echo '("Job Fetch Failed")';
+			}
+			
+	}
+	fetchJobList();
+	// foreach($allJobs as $row){
+	// 	echo($row['job_id']);
+	// 	echo($row['company']);
+	// 	echo($row['position']);
+	// 	echo($row['expertise']);
+	// 	echo($row['experience']);
+	// 	echo($row['type']);
+	// 	echo($row['salary']);
+	// 	// echo($row['position']);
+	// }
+
+	
+}
+if(isset($_POST['view'])){
+	$_SESSION['jobID'] = $_POST['hiddenJobId'];
+	header("location: viewJob.php");
+}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +74,48 @@ session_start();
 <body>
 
 <?php include("includes/navbar.php")?>
+
+<div class="container-fluid">
+		<div class="table-responsive-lg">
+			<h2 class="mt-5 mb-4 pt-5">ALL APPLIED JOBS</h2>
+			<table class="table">
+				<!-- <caption>List of users</caption> -->
+				<thead>
+					<tr class="rowDivider">
+						<th scope="col">ID</th>
+						<th scope="col">Position</th>
+						<th scope="col">Company</th>
+						<th scope="col">Expertise</th>
+						<th scope="col">Experience</th>
+						<th scope="col">Type</th>
+						<th scope="col">Salary</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php 
+					foreach ($allJobs as $row) { 
+    				// printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
+					<tr class=" rowDivider">
+						<th scope="row"><?php echo ($row['job_id']); ?></th>
+						<td><?php echo ($row['position']); ?></td>
+						<td><?php echo ($row['company']); ?></td>
+						<td><?php echo ($row['expertise']); ?></td>
+						<td><?php echo ($row['experience']); ?></td>
+						<td><?php echo ($row['type']); ?></td>
+						<td><?php echo ($row['salary']); ?></td>
+						<td>
+							<form method="POST">
+								<button type="submit" name="view" class="btn customBtn green-light">VIEW JOB</button>
+								<input type="hidden" name="hiddenJobId" value="<?php echo ($row['job_id']); ?>">
+							</form>
+						</td>
+					</tr>
+					<?php } ?>	
+				</tbody>
+			</table>
+		</div>
+	</div>
 
 <?php include("includes/footer.php")?>
 

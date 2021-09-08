@@ -43,10 +43,9 @@ fetchJobList();
 /***************************
 **
 **
-**	Job Post Deletion
-**
 **
 ************************** */
+
 
 
 
@@ -66,6 +65,25 @@ if(!isset($_SESSION['email']) or $_SESSION['role'] != 'employer'){
 	// echo '<script>alert("Please Log In First");</script>';
 	// header("location:index.php");
 }
+/*************
+ * *
+ * *
+ * *
+ * *
+ ****************/
+
+if(isset($_POST['view'])){
+	$_SESSION['jobID'] = $_POST['hiddenJobId'];
+	header("location: viewJob.php");
+}
+
+/************
+*
+*
+*
+*
+************/
+
 if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 	
 
@@ -251,7 +269,8 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 							<!-- data-toggle="modal" data-target="#editJobModal" -->
 							<!-- <button class="btn customBtn green-light">View Job</button> -->
 							<form method="POST">
-								<input type='submit' name="viewEdit"  class="btn customBtn green-light" value="VIEW/EDIT">
+								<input type='submit' name="viewEdit"  class="btn customBtn green-light" value="EDIT">
+								<button type="submit" name="view" class="btn customBtn green-light">VIEW</button>
 					 			<button type='submit' name="delete" class="btn customBtn bg-danger text-white">Delete</button>
 								<input type="hidden" name="hiddenJobId" value="<?php echo ($row['id']); ?>">
 							</form>

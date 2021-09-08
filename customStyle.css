@@ -5,6 +5,9 @@ html {
   height: 100%;
   background-color: #ffffff;
 }
+input[type="file"] {
+  display: none;
+}
 ::-webkit-scrollbar {
   /*height: 15px; /* height of horizontal scrollbar ← You're missing this */
   /*width: 15x; /* width of vertical scrollbar */
@@ -39,6 +42,9 @@ html {
 *   Navbar Section
 *
 ****************************** */
+.navbar {
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.125);
+}
 
 .navbar.navbar-expand-md {
   background-color: none;
@@ -177,7 +183,7 @@ html {
 } */
 
 .card-btn {
-  right: 50%;
+  left: 5%;
   bottom: 5%;
   font-weight: 600;
   font-size: 13px;
@@ -210,10 +216,33 @@ html {
 **
 ******************************** */
 .jobContainer {
+  margin-top: 80px;
   border-radius: 15px;
   box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.125);
 }
 
+/* *******************************
+**
+**
+**    Applied Job Page
+**
+**
+******************************** */
+
+.table thead th {
+  border: none;
+}
+.rowDivider {
+  border: none;
+  border-radius: 20px;
+  box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, 0.125);
+}
+.rowDivider td {
+  vertical-align: middle;
+}
+.rowDivider th {
+  vertical-align: middle;
+}
 @media (max-width: 768px) {
   .navbar.navbar-expand-md {
     background-color: #f0f0f0;

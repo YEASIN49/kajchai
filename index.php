@@ -17,10 +17,8 @@
 		
 	
 				if (!empty($allJobs)){
-					echo ('("All job fetched")');
+					// echo ('("All job fetched")');
 				
-					// echo("HERE ");
-					// echo ($rows['position']);
 				}else{
 					echo '("Job Fetch Failed")';
 				}
@@ -32,38 +30,61 @@
 		$_SESSION['jobID'] = $_POST['jobID'];
 		header("location: viewJob.php");
 	}
-	if(isset($_POST['apply'])){
-		if(!empty($_SESSION['id']) && $_SESSION['role'] == 'user'){
-				// echo('<script>alert("Currently Logged IN");</script>');
-				$submitted = true;
-				$userID = $_SESSION['id'];
-				$jobID = $_POST['jobID'];
-				// $_SESSION['disableBtnId'] = $_POST['jobID'];
-
-				$insertQuery = "INSERT INTO `application`(`job_id`, `user_id`) VALUES ('$jobID','$userID')";
+	// if(isset($_POST['apply'])){
+	// 	if(!empty($_SESSION['id']) && ($_SESSION['role'] == 'user')){
+	// 		// echo('<script>alert("Currently Logged IN");</script>');
+	// 		// $submitted = true;
 			
-				$insertResult=$conn->query($insertQuery);
-				if ($insertResult) {
-					// echo ('<script>
-				// 			alert("Apply Successfull");
-				// 		</script>');
-				// echo '<script>location.replace("postedJob.php")</script>';
-				// sleep(2);
-				// header("location:index.php"); 
-				die('<script>
-					alert("Apply Successfull");
-					location.replace("index.php");
-				</script>');
-				// exit();
-				}else{
-					echo 'Apply Failed !!! ';
-				}
-
-			}
-			else{
-				echo('<script>alert(" Please Log in as a User First");</script>');
-			}
-	}
+	
+	// 		// $name       = $_FILES['file']['name'];  
+	// 		// $temp_name  = $_FILES['file']['tmp_name'];  
+	// 		if(isset($name) and !empty($name)){
+	// 			$name       = $_FILES['file']['name'];  
+	// 		$temp_name  = $_FILES['file']['tmp_name'];
+	// 				$location = './uploads/';      
+	// 				if(move_uploaded_file($temp_name, $location.$name)){
+	// 					echo "File- '$name' uploaded successfully ";
+	// 				}
+	// 		} else {
+	// 				echo 'You should select a file to upload !!';
+	// 		}
+		  
+	// 		// $fileaType = $_FILES['file']['type'];
+	// 		// $fileSize = $_FILES['file']['size'];
+	// 		// $fileTempLoc = $_FILES['file']['temp_name'];
+	// 		// $fileFinalLoc = "includes/".$fileName;
+			
+	// 		// move_uploaded_file($fileTempLoc,$fileFinalLoc);
+	
+	// 		// $_SESSION['disableBtnId'] = $_POST['jobID'];
+	
+	// 		$userID = $_SESSION['id'];
+	// 		$jobID = $_POST['jobID'];
+	
+	// 		$insertQuery = "INSERT INTO `application`(`job_id`, `user_id`) VALUES ('$jobID','$userID')";
+		
+	// 		$insertResult=$conn->query($insertQuery);
+	// 		if ($insertResult) {
+	// 			// echo ('<script>
+	// 			// 			alert("Apply Successfull");
+	// 			// 		</script>');
+	// 			// echo '<script>location.replace("postedJob.php")</script>';
+	// 			// sleep(2);
+	// 			// header("location:index.php"); 
+	// 			die('<script>
+	// 			alert("Apply Successfull");
+	// 			location.replace("index.php");
+	// 		</script>');
+	// 			// exit();
+	// 		}else{
+	// 			echo 'Apply Failed !!! ';
+	// 		}
+	
+	// 	}
+	// 	else{
+	// 			echo('<script>alert(" Please Log in as a User First");</script>');
+	// 	}
+	// }
 	
 
 
@@ -89,9 +110,9 @@
 	// echo ($allJobs);	
 ?>
 
-<?php foreach ($allJobs as $row) { 
+<?php //foreach ($allJobs as $row) { 
     				// printf("%s (%s)\n", $row["id"], $row["position"]); 
-					 echo $row['id'];}?>
+					// echo $row['id'];}?>
 
 <!--******************** 
 
@@ -159,13 +180,16 @@
 				<h5 class="card-title font-weight-bold"><?php echo ($row['position']); ?></h5>
 				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> <?php echo ($row['experience']); ?></p>
 				<p class="card-text mb-0"><span style="font-weight: 500">Expertise Level :</span> <?php echo ($row['expertise']); ?></p>
+				<p class="card-text mb-2"><span style="font-weight: 500">Type :</span> <?php echo ($row['type']); ?></p>
 				<p class="card-text mb-2"><span style="font-weight: 500">Salary :</span> <?php echo ($row['salary']); ?></p>
 				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span><?php echo ($row['requirements']); ?></p>
-				<form action="" method="post" class="py-2">
+				<form action="" method="post" class="py-3">
 					
 					<input type="hidden" name="jobID" value="<?php echo($row['id']);?>">
-					<button type="submit" name="view" class="btn card-btn green position-absolute form-control">VIEW</button>
-					<button type="submit" name="apply" 
+					<button type="submit" name="view" class="btn card-btn green position-absolute form-control">SEE MORE</button>
+					<!-- <label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label> -->
+					<!-- <input id="file" type="file" name="file" /> -->
+					<!-- <button type="submit" name="apply" 
 					
 					<?php 
 						// if(isset($_SESSION['disableBtnId'])){
@@ -173,7 +197,7 @@
 						// 		echo('disabled');
 						// 	}
 						// }
-					?> id="applyBtn" class="btn card-btn btn-apply green position-absolute form-control">APPLY</button>
+					?> id="applyBtn" class="btn card-btn btn-apply green position-absolute form-control">APPLY</button> -->
 				</form>
 				
 				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
@@ -209,15 +233,14 @@
 				console.log(navbar)
 				navbar.classList.add("bg-light");
 				navbar.classList.remove("bg-transparent");
+				navbar.style.boxShadow = "0px 0px 10px 5px rgba(0, 0, 0, 0.125)";
 				//  navbar.classList.toggle("bg-primary");
 			} 
 			else {
 				navbar.classList.add("bg-transparent");
 				navbar.classList.remove("bg-light");
 			}
-
 		}
-
 	}
 </script>
 </body>
