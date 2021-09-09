@@ -26,65 +26,36 @@
 	// }
 	// fetchJobList();
 	// $submitted;
+	$shouldFilterJob = false;
+	$category;
+	$location;
 	if(isset($_POST['view'])){
 		$_SESSION['jobID'] = $_POST['jobID'];
 		header("location: viewJob.php");
 	}
-	// if(isset($_POST['apply'])){
-	// 	if(!empty($_SESSION['id']) && ($_SESSION['role'] == 'user')){
-	// 		// echo('<script>alert("Currently Logged IN");</script>');
-	// 		// $submitted = true;
-			
 	
-	// 		// $name       = $_FILES['file']['name'];  
-	// 		// $temp_name  = $_FILES['file']['tmp_name'];  
-	// 		if(isset($name) and !empty($name)){
-	// 			$name       = $_FILES['file']['name'];  
-	// 		$temp_name  = $_FILES['file']['tmp_name'];
-	// 				$location = './uploads/';      
-	// 				if(move_uploaded_file($temp_name, $location.$name)){
-	// 					echo "File- '$name' uploaded successfully ";
-	// 				}
-	// 		} else {
-	// 				echo 'You should select a file to upload !!';
-	// 		}
-		  
-	// 		// $fileaType = $_FILES['file']['type'];
-	// 		// $fileSize = $_FILES['file']['size'];
-	// 		// $fileTempLoc = $_FILES['file']['temp_name'];
-	// 		// $fileFinalLoc = "includes/".$fileName;
-			
-	// 		// move_uploaded_file($fileTempLoc,$fileFinalLoc);
 	
-	// 		// $_SESSION['disableBtnId'] = $_POST['jobID'];
-	
-	// 		$userID = $_SESSION['id'];
-	// 		$jobID = $_POST['jobID'];
-	
-	// 		$insertQuery = "INSERT INTO `application`(`job_id`, `user_id`) VALUES ('$jobID','$userID')";
+	if (isset($_POST['search'])) {
+		echo("<script>Entered</script>");
+		if(!isset($_POST['category'])){
+			$category = null;
+			}
+		else{
+			global $category;
+			$category = $_POST['category'];
+			$location = $_POST['location'];
+		}
 		
-	// 		$insertResult=$conn->query($insertQuery);
-	// 		if ($insertResult) {
-	// 			// echo ('<script>
-	// 			// 			alert("Apply Successfull");
-	// 			// 		</script>');
-	// 			// echo '<script>location.replace("postedJob.php")</script>';
-	// 			// sleep(2);
-	// 			// header("location:index.php"); 
-	// 			die('<script>
-	// 			alert("Apply Successfull");
-	// 			location.replace("index.php");
-	// 		</script>');
-	// 			// exit();
-	// 		}else{
-	// 			echo 'Apply Failed !!! ';
-	// 		}
-	
-	// 	}
-	// 	else{
-	// 			echo('<script>alert(" Please Log in as a User First");</script>');
-	// 	}
-	// }
+
+		$shouldFilterJob = true;
+		echo("<script>window.location.hash = 'jobListSection';</script>");
+		// foreach($allJobs as $row){
+		// 	if($category == $row['category'] && $location == $row['location']){
+		// 		echo("Working -> ");
+		// 		echo($row['position']);
+		// 	}
+		// }
+	}
 	
 
 
@@ -125,35 +96,32 @@
     <h1 style="font-weight:800">FIND OR SELL SKILLS THAT YOU DESIRE</h1>
     <p>Search Your Skills</p>
     <!-- <button>Hire me</button> -->
-	 <form>
+	    <form action="" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-5 p-0 m-0">
 					<!-- <label for="inputEmail4">Email</label> -->
-					<input type="text" class="form-control" placeholder="programming, Finance etc..." id="inputEmail4">
+					<!-- <input type="text" class="form-control" placeholder="programming, Finance etc..." id="inputEmail4"> -->
+					<select name="category" id="inputState" class="form-control">
+						<option value="" disabled selected hidden>Frontend, Backend etc...</option>
+						<option value='frontend'>Frontend</option>
+						<option value='backend'>Backend</option>
+						<option value='fullstack'>Fullstack</option>
+						<option value='graphics'>Graphics</option>
+						<option value='testing'>Testing</option>
+					</select>
 				</div>
 				<div class="form-group col-md-4 p-0 m-0">
 				<!-- <label for="inputState">State</label> -->
-					<select id="inputState" class="form-control">
-						<option selected>Dhaka</option>
-						<option>Sylhet</option>
-						<option>Chittagong</option>
+					<select name="location" id="inputState" class="form-control">
+						<option selected value='dhaka'>Dhaka</option>
+						<option value='sylhet'>Sylhet</option>
+						<option value='chittagong'>Chittagong</option>
 					</select>
 				</div>
-				<button type="submit" class="btn customBtn green">SEARCH</button>
+				<button type="submit" name="search" class="btn customBtn green">SEARCH</button>
 			</div>
 		</form>
   </div>
-</div>
-
-<!-- **********************************
-
- ******** Section Divider Style
-
-*********************************** -->
-<div class="dividerContainer">
-	<div class="box">
-
-	</div>
 </div>
 
 
@@ -164,47 +132,102 @@
 *********************************** -->
 
 
-<div class="jobListContainer my-5 mx-4 pt-5">
+<div id="jobListSection" class="jobListContainer my-5 mx-4 pt-5">
 	<h3 class="font-weight-bold text-center">EXPLORE ALL THE VACANCIES</h3>
 	<p class="text-center explore position-relative"><span class="material-icons">work_outline</span></p>
 
 	<div class="card-group pb-5 ">
 		
-		<?php foreach ($allJobs as $row) { 
-    				// printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
-		<div class="card">
-			<!-- <img src="..." class="card-img-top" alt="..."> -->
-			<div class="card-body">
-			
-				<p class="card-text"><small class="text-muted"><?php echo ($row['company']); ?></small></p>
-				<h5 class="card-title font-weight-bold"><?php echo ($row['position']); ?></h5>
-				<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> <?php echo ($row['experience']); ?></p>
-				<p class="card-text mb-0"><span style="font-weight: 500">Expertise Level :</span> <?php echo ($row['expertise']); ?></p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Type :</span> <?php echo ($row['type']); ?></p>
-				<p class="card-text mb-2"><span style="font-weight: 500">Salary :</span> <?php echo ($row['salary']); ?></p>
-				<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span><?php echo ($row['requirements']); ?></p>
-				<form action="" method="post" class="py-3">
+		<?php 
+		$jobCount = 0;
+		foreach ($allJobs as $row) { 
+			if($shouldFilterJob){
+				if($category == $row['category'] && $location == $row['location']){ 
+					$jobCount+=1;
+					?>
 					
-					<input type="hidden" name="jobID" value="<?php echo($row['id']);?>">
-					<button type="submit" name="view" class="btn card-btn green position-absolute form-control">SEE MORE</button>
-					<!-- <label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label> -->
-					<!-- <input id="file" type="file" name="file" /> -->
-					<!-- <button type="submit" name="apply" 
+					<div class="card">
+						<!-- <img src="..." class="card-img-top" alt="..."> -->
+						<div class="card-body">
+						
+							<p class="card-text mb-0"><small class="text-muted"><?php echo ($row['company']); ?></small></p>
+							<p class="card-text"><small class="text-muted"><?php echo (strtoupper($row['location'])); ?><span class="material-icons">location_on</span></small></p>
+							<h5 class="card-title font-weight-bold"><?php echo ($row['position']); ?></h5>
+							<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> <?php echo ($row['experience']); ?></p>
+							<p class="card-text mb-0"><span style="font-weight: 500">Expertise Level :</span> <?php echo ($row['expertise']); ?></p>
+							<p class="card-text mb-2"><span style="font-weight: 500">Type :</span> <?php echo ($row['type']); ?></p>
+							<p class="card-text mb-2"><span style="font-weight: 500">Salary :</span> <?php echo ($row['salary']); ?></p>
+							<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span><?php echo ($row['requirements']); ?></p>
+							<form action="" method="post" class="py-3">
+									
+								<input type="hidden" name="jobID" value="<?php echo($row['id']);?>">
+								<button type="submit" name="view" class="btn card-btn green position-absolute form-control">SEE MORE</button>
+								<!-- <label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label> -->
+								<!-- <input id="file" type="file" name="file" /> -->
+								<!-- <button type="submit" name="apply" 
+								
+								<?php 
+									// if(isset($_SESSION['disableBtnId'])){
+									// 	if($row['id'] == $_SESSION['disableBtnId']){
+									// 		echo('disabled');
+									// 	}
+									// }
+								?> id="applyBtn" class="btn card-btn btn-apply green position-absolute form-control">APPLY</button> -->
+							</form>
+								
+							<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+							
+						</div>
+					</div>
+
+				<?php } 
 					
-					<?php 
-						// if(isset($_SESSION['disableBtnId'])){
-						// 	if($row['id'] == $_SESSION['disableBtnId']){
-						// 		echo('disabled');
-						// 	}
-						// }
-					?> id="applyBtn" class="btn card-btn btn-apply green position-absolute form-control">APPLY</button> -->
-				</form>
-				
-				<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
-			
-			</div>
-		</div>
-		<?php } ?>
+    		} 
+			else{ 
+				$jobCount+=1;
+				?>
+
+				<div class="card">
+					<!-- <img src="..." class="card-img-top" alt="..."> -->
+					<div class="card-body">
+							
+						<p class="card-text mb-0"><small class="text-muted"><?php echo ($row['company']); ?></small></p>
+						<p class="card-text"><small class="text-muted"><?php echo (strtoupper($row['location'])); ?><span class="material-icons location-icon">location_on</span></small></p>
+						<h5 class="card-title font-weight-bold"><?php echo ($row['position']); ?></h5>
+						<p class="card-text mb-0"><span style="font-weight: 500">Experience :</span> <?php echo ($row['experience']); ?></p>
+						<p class="card-text mb-0"><span style="font-weight: 500">Expertise Level :</span> <?php echo ($row['expertise']); ?></p>
+						<p class="card-text mb-2"><span style="font-weight: 500">Type :</span> <?php echo ($row['type']); ?></p>
+						<p class="card-text mb-2"><span style="font-weight: 500">Salary :</span> <?php echo ($row['salary']); ?></p>
+						<p class="card-text mb-5"><span style="font-weight: 500">Requirements : </span><?php echo ($row['requirements']); ?></p>
+						<form action="" method="post" class="py-3">
+									
+							<input type="hidden" name="jobID" value="<?php echo($row['id']);?>">
+							<button type="submit" name="view" class="btn card-btn green position-absolute form-control">SEE MORE</button>
+							<!-- <label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label> -->
+							<!-- <input id="file" type="file" name="file" /> -->
+							<!-- <button type="submit" name="apply" 
+							
+							<?php 
+								// if(isset($_SESSION['disableBtnId'])){
+								// 	if($row['id'] == $_SESSION['disableBtnId']){
+								// 		echo('disabled');
+								// 	}
+								// }
+							?> id="applyBtn" class="btn card-btn btn-apply green position-absolute form-control">APPLY</button> -->
+						</form>
+								
+						<!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+							
+					</div>
+				</div>
+
+			<?php }		 	
+		
+		} 
+		if($jobCount == 0){
+			echo("<h5 class='noJobMsg text-center my-5'><p>No job found!</p></h5>");
+		}
+		?>
 		
 	</div>
 </div>
@@ -245,7 +268,7 @@
 </script>
 </body>
 <?php include("includes/footer.php")?>
-
+</html>
 <?php
-echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+// echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>

@@ -95,9 +95,11 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 		$salary = $_POST['salary'];
 		$responsibility = $_POST['responsibility'];
 		$requirements = $_POST['requirements'];
+		$location = $_POST['location'];
+		$category = $_POST['category'];
 		$employer_id = $_SESSION['id'];
 	
-		$sql = "INSERT INTO `jobs`( `position`, `company`, `expertise`, `experience`, `type`, `salary`, `responsibility`, `requirements`, `employer_id`) VALUES ('$position', '$company', '$expertise', '$experience', '$type', '$salary', '$responsibility', '$requirements', '$employer_id')";
+		$sql = "INSERT INTO `jobs`( `position`, `company`, `expertise`, `experience`, `type`, `salary`, `responsibility`, `requirements`, `location`, `category`, `employer_id`) VALUES ('$position', '$company', '$expertise', '$experience', '$type', '$salary', '$responsibility', '$requirements', '$location', '$category', '$employer_id')";
 		// die($sql);
 		$result=$conn->query($sql);
 	
@@ -143,6 +145,8 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 				$_SESSION['editableJobSalary'] = $row['salary'];
 				$_SESSION['editableJobResponsibility'] = $row['responsibility'];
 				$_SESSION['editableJobRequirements'] = $row['requirements'];
+				$_SESSION['editableJobLocation'] = $row['location'];
+				$_SESSION['editableJobCategory'] = $row['category'];
 				// $_SESSION['editableJobId'] = $row['id'];
 				
 			}
@@ -205,15 +209,34 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 								<label for="">Salary :</label> 
 								<input class="form-control" type="text" name="salary">
 							</div>
+							<div class="form-group">
+								<label for="">Location :</label> 
+								<select name="location" id="inputState" class="form-control">
+									<option selected value='dhaka'>Dhaka</option>
+									<option value='sylhet'>Sylhet</option>
+									<option value='chittagong'>Chittagong</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label for="">Category :</label> 
+								<select name="category" id="inputState" class="form-control">
+									<option value="" disabled selected hidden>Frontend, Backend etc...</option>
+									<option value='frontend'>Frontend</option>
+									<option value='backend'>Backend</option>
+									<option value='fullstack'>Fullstack</option>
+									<option value='graphics'>Graphics</option>
+									<option value='testing'>Testing</option>
+								</select>
+							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="">Responsibilities :</label> 
-								<textarea class="form-control" rows="11" name="responsibility"></textarea>
+								<textarea class="form-control" rows="15" name="responsibility"></textarea>
 							</div>
 							<div class="form-group">
 								<label for="">Requirements :</label> 
-								<textarea class="form-control" rows="11" name="requirements"></textarea>
+								<textarea class="form-control" rows="16" name="requirements"></textarea>
 							</div>
 						
 						</div>

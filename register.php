@@ -57,9 +57,10 @@ if(isset($_POST['create'])){
 	// echo "<script>alert('$roletype')</script>";
 
 		
-}else{
-	echo "Fill all the field";
 }
+// else{
+// 	echo "Fill all the field";
+// }
 
 ?>
 

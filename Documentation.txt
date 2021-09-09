@@ -1,43 +1,48 @@
 # KAJCHAI
-It is an online job portal with a role based feature for both job provided and job seeker.
+It is an online job portal with a role based feature for both job provider and job seeker.
 
 ## Technology
-PHP, MySql, HTML5, CSS3, Javascript, Bootstrap-v4.6, Jquery
+PHP, MySql, HTML5, CSS3, Javascript, Bootstrap-v4.6
 
-## Step to Run The Project
+## Step to Run The Project on Your Local Machine
 1. Install XAMPP.
-2. Go to C:/xampp/htdocs/yourFolder and then paste all the source files. Source Files are also available at https://github.com/YEASIN49/kajchai
+2. Go to C:/xampp/htdocs/"yourNewFolder" and then paste all the source files. Source Files are also available at https://github.com/YEASIN49/kajchai
 3. Open Xampp control panel and start Apache and MySql.
 4. Go to localhost from your browser and select phpmyadmin.
 5. Import the provided sql database called "onlinejobportal".
-6. Open any browser and type localhost/yourFolder in the browser url box.
+6. Open any browser and type localhost/"yourNewFolder" in the browser url box.
 
 ## Online Url
 website is live at https://kajchai.000webhostapp.com/index.php
 
 ## Features
+# Employer Feature
 1. login, Registration.
-2. Job seeker can view all the jobs.
-3. Job seeker can apply jobs by submitting their CV file.
-4. Job seeker can search jobs by catagory and location.
-5. Job seeker can view all of their applied jobs.
-6. Job provider can post a new job.
-7. Job provider can see all the job seekers applied for the job.
-8. Job provider can see all the job list the he posted.
-9. job provider can delete job post at any time.
-10.Job provider can see CV's of job seeker.
+2. View all the jobs.
+3. Can apply jobs by submitting their CV file.
+4. Can search jobs by catagory and location.
+5. Can view all of their applied jobs.
 
-## Current Work 
-1. Dynamic Homepage including all job list.
-2. Working rolebased Login and signup Modals under PHP using HTMl5, CSS3, Bootstrap-v4.6, Javascript.
-3. Working job posting page with employer access only.
-4. Working job posting feature into mysql database.
-5. Working access control using session variable.
-6. Dynamic rolebased nav link in navbar.
-7. Working login, signup success or failure alert.
-8. Working Job post page.
-9. Working job update/ View feature for employer.
-10. Working job delete feature for employer.
+# Employee Feature
+1. login, Registration
+2. Can post a new job.
+3. Can see all the job seekers applied for the job.
+4. Can see all the job list that he posted.
+5. Can see all the existing job on the platform.
+6. Can search jobs by catagory and location.
+7. Can delete his job post at any time.
+8. Can update his job post at any time.
+9. Can view his job post individually.
+10.Can see and download CV's of job seeker.
+
+# Common Feature
+1. Mobile Responsive
+2. Rolebased login and registration.
+3. Restricted pages can only be viewed by authorized user.
+4. User will be logged in even after refreshing the web page.
+5. Only page that can be accessed are shown in the navbar to users.
+6. Rolebased access verification.
+7. Various success and failed notification are notified to user through alertbox.
 
 
 

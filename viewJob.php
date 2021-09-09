@@ -115,12 +115,12 @@ function showStatus(){
 }
 showStatus();
 // print_r($allStatus);
-foreach($allStatus as $statusRow){
-	// echo($allStatus[0]);
+// foreach($allStatus as $statusRow){
+// 	// echo($allStatus[0]);
 	
-	echo($statusRow['name']);
-	echo($statusRow['job_id']);
-}
+// 	// echo($statusRow['name']);
+// 	// echo($statusRow['job_id']);
+// }
 
 
 
@@ -263,5 +263,5 @@ foreach($allStatus as $statusRow){
 <?php
 include("login.php");
 include("register.php");
-echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+// echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>

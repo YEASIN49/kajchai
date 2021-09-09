@@ -12,6 +12,8 @@ $currentType = $_SESSION['editableJobType'];
 $currentSalary = $_SESSION['editableJobSalary'];
 $currentResponsibility = $_SESSION['editableJobResponsibility'];
 $currentRequirements = $_SESSION['editableJobRequirements'];
+$currentLocation = $_SESSION['editableJobLocation'];
+$currentCategory = $_SESSION['editableJobCategory'];
 
 
 
@@ -35,6 +37,8 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 		$salary = $_POST['salary'];
 		$responsibility = $_POST['responsibility'];
 		$requirements = $_POST['requirements'];
+		$location = $_POST['location'];
+		$category = $_POST['category'];
 		$employer_id = $_SESSION['id'];
 	
 		$sql = "UPDATE jobs
@@ -116,17 +120,36 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 										<label for="">Salary :</label> 
 										<input class="form-control" type="text" name="salary" value="<?php echo $currentSalary; ?>">
 									</div>
+									<div class="form-group">
+										<label for="">Location :</label> 
+										<select name="category" id="inputState" class="form-control">
+											<option value="<?php echo $currentLocation; ?>" selected ><?php echo $currentLocation; ?></option>
+											<option selected value='dhaka'>Dhaka</option>
+											<option value='sylhet'>Sylhet</option>
+											<option value='chittagong'>Chittagong</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="">Category :</label> 
+										<select name="category" id="inputState" class="form-control">
+											<option value="<?php echo $currentCategory; ?>" selected ><?php echo $currentCategory; ?></option>
+											<option value='frontend'>Frontend</option>
+											<option value='backend'>Backend</option>
+											<option value='fullstack'>Fullstack</option>
+											<option value='graphics'>Graphics</option>
+											<option value='testing'>Testing</option>
+										</select>
+									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Responsibilities :</label> 
-										<textarea id="responsibility" class="form-control" rows="11" name="responsibility"><?php echo $currentResponsibility; ?></textarea>
+										<textarea id="responsibility" class="form-control" rows="15" name="responsibility"><?php echo $currentResponsibility; ?></textarea>
 									</div>
 									<div class="form-group">
 										<label for="">Requirements :</label> 
-										<textarea id="requirements" class="form-control" rows="11" name="requirements"><?php echo $currentRequirements; ?></textarea>
-									</div>
-								
+										<textarea id="requirements" class="form-control" rows="16" name="requirements"><?php echo $currentRequirements; ?></textarea>
+									</div>								
 								</div>
 							</div>
 							<div class="row">
