@@ -56,8 +56,9 @@ if(isset($_POST['apply'])){
 
 		$userID = $_SESSION['id'];
 		$jobID = $_POST['jobID'];
+		$employer_id = $_POST['employerID'];
 
-		$insertQuery = "INSERT INTO `application`(`job_id`, `user_id`,`cv`) VALUES ('$jobID','$userID','$name')";
+		$insertQuery = "INSERT INTO `application`(`job_id`, `user_id`,`cv`,`employer_id`) VALUES ('$jobID','$userID','$name','$employer_id')";
 	
 		$insertResult=$conn->query($insertQuery);
 		if ($insertResult) {
@@ -158,6 +159,7 @@ showStatus();
 			<form action="" method="post" enctype="multipart/form-data" class="py-2 d-inline">
 				
 				<input type="hidden" name="jobID" value="<?php echo($row['id']);?>">
+				<input type="hidden" name="employerID" value="<?php echo($row['employer_id']);?>">
 				<?php if(!$hideToUser){ ?>
 
 						<label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label>
@@ -263,5 +265,5 @@ showStatus();
 <?php
 include("login.php");
 include("register.php");
-// echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>
