@@ -1,3 +1,12 @@
+<?php
+
+  $isLoggedIn = false;
+  if(isset($_SESSION['id']) && isset($_SESSION['role'])){
+    $isLoggedIn = true;
+  }
+
+?>
+
 
 <nav class="navbar fixed-top navbar-expand-md navbar-light">
   <a class="navbar-brand p-2 ml-md-4" href="index.php">KAJCHAI</a>
@@ -10,23 +19,20 @@
       <li class="nav-item active">
         <a class="nav-link" href="index.php">HOME <span class="sr-only">(current)</span></a>
       </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="">LOGIN</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="documentation.txt">DOCUMENTATION <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#registerModal" href="">SIGNUP</a>
-      </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link"   href="logout.php">LOG OUT</a>
-      </li> -->
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="appliedJob.php">APPLIED JOB</a>
-      </li> -->
+      <?php 
+        if(!$isLoggedIn){  ?>
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="">LOGIN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#registerModal" href="">SIGNUP</a>
+          </li>
+      <?php } ?>
       
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="postedJob.php">POSTED JOB</a>
-      </li> -->
       <?php 
         if(isset($_SESSION['id'])){
           

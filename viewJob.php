@@ -5,6 +5,10 @@ session_start();
 
 // echo("test -> ".$_SESSION['jobID']);
 // echo("test -> ".$_SESSION['email']);
+$hideToUser = true;
+if(!isset($_SESSION['role']) || $_SESSION['role']== 'user'){
+	$hideToUser = false;
+}
 $sqlSelect = "SELECT * FROM jobs WHERE id = '".$_SESSION['jobID']."'";
 	
 $jobResult=$conn->query($sqlSelect) or die('<script>alert("SQL Query Failed");</script>');
@@ -77,6 +81,46 @@ if(isset($_POST['apply'])){
 			echo('<script>alert(" Please Log in as a User First");</script>');
 	}
 }
+$allStatus;
+$countApplication;
+function showStatus(){
+
+	global $countApplication;
+	global $conn;
+	global $allStatus;
+
+	$selectQuery = "SELECT DISTINCT application.job_id, application.user_id, application.cv, application.employer_id, user.name 
+	FROM ((application
+		   INNER JOIN user ON application.user_id = user.id)
+		   INNER JOIN jobs ON application.job_id = '".$_SESSION['jobID']."')";
+
+			$allStatus=$conn->query($selectQuery);
+			$countApplication=$allStatus->num_rows;
+			// echo "$countApplication";
+			if ($allStatus) {
+				// echo ('<script>
+				// 			alert("Status Successfull");
+				// 		</script>');
+				
+				// header("location:index.php"); 
+			// 	die('<script>
+			// 	alert("Status Fetched Successfull");
+			
+			// </script>');
+				// exit();
+			}else{
+				echo 'Status Failed !!! ';
+			}
+
+}
+showStatus();
+// print_r($allStatus);
+foreach($allStatus as $statusRow){
+	// echo($allStatus[0]);
+	
+	echo($statusRow['name']);
+	echo($statusRow['job_id']);
+}
 
 
 
@@ -96,7 +140,7 @@ if(isset($_POST['apply'])){
 
 <?php include("includes/navbar.php")?>
 
-<div class="container jobContainer pt-5 px-5">
+	<div class="container jobContainer pt-5 px-5">
 		<h3 class="font-weight-bold my-3">JOB DETAILS</h3>
 		<div class="pt-2 pb-5 pl-4">
 			<p class="card-text"><small class="text-muted"><?php echo ($row['company']); ?></small></p>
@@ -114,16 +158,69 @@ if(isset($_POST['apply'])){
 			<form action="" method="post" enctype="multipart/form-data" class="py-2 d-inline">
 				
 				<input type="hidden" name="jobID" value="<?php echo($row['id']);?>">
-				<label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label>
-				<input id="file" type="file" name="file" />
-				<!-- <input type="file" name="jobID" > -->
+				<?php if(!$hideToUser){ ?>
+
+						<label for="file" class="btn card-btn btn-apply green py-3 mb-0">UPLOAD CV</label>
+						<input id="file" type="file" name="file" />
+						<!-- <input type="file" name="jobID" > -->
+						
+						<!-- <button type="file" name="cv" id="cvBtn" class="btn card-btn btn-apply green py-3">UPLOAD CV</button> -->
+						<button type="submit" name="apply" id="applyBtn" class="btn card-btn btn-apply green py-3">APPLY</button>
+
+				<?php	}	?>
 				
-				<!-- <button type="file" name="cv" id="cvBtn" class="btn card-btn btn-apply green py-3">UPLOAD CV</button> -->
-				<button type="submit" name="apply" id="applyBtn" class="btn card-btn btn-apply green py-3">APPLY</button>
 			</form>
 
 		</div>
 	</div>
+
+
+	<!--**************************** 
+		*
+		*
+		*		Employer Check Status Section
+		*
+		*
+	 *********************************-->
+<?php if($hideToUser){ ?>
+	<div class="container jobContainer pt-5 px-5">
+		<h3 class="font-weight-bold my-3">JOB STATUS</h3>
+		<div class="table-responsive-lg pt-2 pb-5 px-4">
+			<h5 class="font-weight-bold mb-2">TOTAL APPLIED : <?php echo($countApplication); ?></h5>
+			<table class="table">
+					<!-- <caption>List of users</caption> -->
+				<thead>
+					<tr class="rowDivider">
+						<th scope="col">Job ID</th>
+						<th scope="col">Applicant ID</th>
+						<th scope="col">Applicant Name</th>
+						<th scope="col">Employer ID</th>
+						<th scope="col">CV</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<?php 
+						foreach ($allStatus as $row) { 
+						// printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
+						<tr class=" rowDivider">
+							<?php if($row['employer_id'] == $_SESSION['id']){ ?> 
+								<th scope="row"><?php echo ($row['job_id']); ?></th>
+								<td><?php echo ($row['user_id']); ?></td>
+								<td><?php echo ($row['name']); ?></td>
+								<td><?php echo ($row['employer_id']);?></td>
+								<td><a href="./uploads/<?php echo ($row['cv']); ?>"><?php echo ($row['cv']); ?></a></td>
+								
+							<?php } ?>	
+						</tr>
+					<?php } ?>	
+				</tbody>
+			</table>
+		</div>	
+	</div>		
+<?php	}	?>
+
+
 
 <?php include("includes/footer.php")?>
 

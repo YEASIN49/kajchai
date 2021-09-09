@@ -29,10 +29,8 @@ function fetchJobList(){
 	
 
 			if (!empty($allJobs)){
-				echo ('("All job fetched")');
+				// echo ('("All job fetched")');
 			
-				// echo("HERE ");
-				// echo ($rows['position']);
 			}else{
 				echo '("Job Fetch Failed")';
 			}
@@ -129,12 +127,10 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 
 	}
 	elseif(isset($_POST['viewEdit'])){
-		echo("ENTERED");
 		$jobID = $_POST['hiddenJobId'];
 	
 		foreach ($allJobs as $row) { 
-			echo ("FROM HERE"); 
-			echo ($row['id']); 
+			// echo ($row['id']); 
 			if($row['id'] == $_POST['hiddenJobId']){
 				$_SESSION['editableJobId'] = $row['id'];
 				echo ("testt  - >"); 
@@ -163,7 +159,7 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 
 
 ?>
-	// HERE GOES HTML, JS CODE
+	 <!-- HERE GOES HTML, JS CODE -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -254,7 +250,7 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 				<tbody>
 				<?php 
 					foreach ($allJobs as $row) { 
-    				printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
+    				// printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
 					<tr>
 						<th scope="row"><?php echo ($row['id']); ?></th>
 						<td><?php echo ($row['position']); ?></td>
@@ -270,7 +266,7 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 							<!-- <button class="btn customBtn green-light">View Job</button> -->
 							<form method="POST">
 								<input type='submit' name="viewEdit"  class="btn customBtn green-light" value="EDIT">
-								<button type="submit" name="view" class="btn customBtn green-light">VIEW</button>
+								<button type="submit" name="view" class="btn customBtn green-light">VIEW STATUS</button>
 					 			<button type='submit' name="delete" class="btn customBtn bg-danger text-white">Delete</button>
 								<input type="hidden" name="hiddenJobId" value="<?php echo ($row['id']); ?>">
 							</form>
