@@ -156,9 +156,9 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 				// die('<pre>' . print_r($_SESSION, TRUE) . '</pre'); //this is to show all the session variable
 				die("<script>location.replace('editJob.php');</script>");
 	} 
-	else{
-		echo "Fill all the field";
-	}
+	// else{
+	// 	echo "Fill all the field";
+	// }
 
 
 
@@ -171,55 +171,56 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	
-	<?php include("includes/docHeaderInfo.php")?>;
+	<?php include("includes/docHeaderInfo.php")?>
 
 	<title>Posted Jobs</title>
 </head>
 <body>
-	<?php include("includes/navbar.php")?>;
+	<?php include("includes/navbar.php")?>
 
 	<div class="container my-5 pb-5">
-		<h2 class="mt-5 mb-4 pt-5">POST A NEW JOB</h2>
+		<h2 class="mt-5 mb-0 pt-5">POST A NEW JOB</h2>
+		<p class="card-text mb-4"><small style="color: #5867DE;">Make Sure To Fill ALL the Field</small></p>
 		<div class="row">
 			<div class="col-md-12">
 				<form action="" method="post">	
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">Position :</label> 
-								<input class="form-control" type="text" name="position">
+								<label for="">Position<span class="text-danger">*</span> :</label> 
+								<input required class="form-control" type="text" name="position">
 							</div>
 							<div class="form-group">
-								<label for="">Company Name :</label> 
-								<input class="form-control" type="text" name="company">
+								<label for="">Company Name<span class="text-danger">*</span> :</label> 
+								<input required class="form-control" type="text" name="company">
 							</div>
 							<div class="form-group">
-								<label for="">Expertise Level :</label> 
-								<input class="form-control" type="text" name="expertise">
+								<label for="">Expertise Level<span class="text-danger">*</span> :</label> 
+								<input required class="form-control" type="text" name="expertise">
 							</div>
 							<div class="form-group">
-								<label for="">Experience :</label> 
-								<input class="form-control" type="text" name="experience">
+								<label for="">Experience<span class="text-danger">*</span> :</label> 
+								<input  required class="form-control" type="text" name="experience">
 							</div>
 							<div class="form-group">
-								<label for="">Type :</label> 
-								<input class="form-control" type="text" name="type">
+								<label for="">Type<span class="text-danger">*</span> :</label> 
+								<input required class="form-control" type="text" name="type">
 							</div>
 							<div class="form-group">
-								<label for="">Salary :</label> 
-								<input class="form-control" type="text" name="salary">
+								<label for="">Salary<span class="text-danger">*</span> :</label> 
+								<input required class="form-control" type="text" name="salary">
 							</div>
 							<div class="form-group">
-								<label for="">Location :</label> 
-								<select name="location" id="inputState" class="form-control">
+								<label for="">Location<span class="text-danger">*</span> :</label> 
+								<select required name="location" id="inputState" class="form-control">
 									<option selected value='dhaka'>Dhaka</option>
 									<option value='sylhet'>Sylhet</option>
 									<option value='chittagong'>Chittagong</option>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="">Category :</label> 
-								<select name="category" id="inputState" class="form-control">
+								<label for="">Category<span class="text-danger">*</span> :</label> 
+								<select required name="category" id="inputState" class="form-control">
 									<option value="" disabled selected hidden>Frontend, Backend etc...</option>
 									<option value='frontend'>Frontend</option>
 									<option value='backend'>Backend</option>
@@ -231,12 +232,12 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="">Responsibilities :</label> 
-								<textarea class="form-control" rows="15" name="responsibility"></textarea>
+								<label for="">Responsibilities<span class="text-danger">*</span> :</label> 
+								<textarea required class="form-control" rows="15" name="responsibility"></textarea>
 							</div>
 							<div class="form-group">
-								<label for="">Requirements :</label> 
-								<textarea class="form-control" rows="16" name="requirements"></textarea>
+								<label for="">Requirements<span class="text-danger">*</span> :</label> 
+								<textarea required class="form-control" rows="16" name="requirements"></textarea>
 							</div>
 						
 						</div>
@@ -344,7 +345,7 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 
 </body>
 <?php
-echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+// echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 }
 else{
 	echo '<script>alert("Please Log In First")</script>';

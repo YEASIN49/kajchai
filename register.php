@@ -76,18 +76,18 @@ if(isset($_POST['create'])){
       <div class="modal-body mx-3">
 			<form action="" method="post">
 				<div class="form-group">
-					<label for="exampleInputEmail1">Your Name</label>
-					<input type="text" name="name" class="form-control" id="" aria-describedby="nameHelp" placeholder="Enter Your Name">
+					<label for="exampleInputEmail1">Your Name<span class="text-danger">*</span></label>
+					<input required type="text" name="name" class="form-control" id="" aria-describedby="nameHelp" placeholder="Enter Your Name">
 					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail1">Email address</label>
-					<input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+					<label for="exampleInputEmail1">Email address<span class="text-danger">*</span></label>
+					<input required type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
 					<!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
 				</div>
 				<div class="form-group">
-					<label for="exampleInputPassword1">Password</label>
-					<input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+					<label for="exampleInputPassword1">Password<span class="text-danger">*</span></label>
+					<input required type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">Location</label>
@@ -102,10 +102,10 @@ if(isset($_POST['create'])){
 				<div class="form-group">
 					<!-- <label for="exampleInputPassword1">Password</label>
 					<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"> -->
-
-					<input type="radio" id="user" name="role" value="user">
+					<label for="">I am an<span class="text-danger">*</span> :</label><br>
+					<input required type="radio" id="user" name="role" value="user">
 					<label for="user">Employee</label><br>
-					<input type="radio" id="employer" name="role" value="employer">
+					<input required type="radio" id="employer" name="role" value="employer">
 					<label for="employer">Employer</label><br>	
 				</div>
 

@@ -20,18 +20,22 @@
 
 			if ($row= $result->fetch_assoc()) {
 				global $roletype;
-				echo '<script>alert("Logged In")<script>';
+				// echo '<script>alert("Logged In")</script>';
 				$_SESSION['id'] = $row['id'];
 				$_SESSION['name'] = $row['name'];
 				$_SESSION['role'] = $roletype;
 				$_SESSION['email'] = $_POST['email']; 
-				// echo '<script>alert("Logged In")<script>';
-				// header('Location: postedJob.php');
+				echo ('<script>
+				const loc = window.location.href;
+				</script>');
+				// header('Location:'.$_SERVER['PHP_SELF'].'?'.$_SERVER['QUERY_STRING']);
+				// header('Location: '.$_SERVER['PHP_SELF']);
+				// die;
 				// echo ;
-				echo '<script>alert("Logged In")</script>';
+				// echo ('<script>alert("Logged In")</script>');
 				// die('<pre>' . print_r($_SESSION, TRUE) . '</pre'); //this is to show all the session variable
 				die("<script>alert('Successfully Logged In');
-					location.replace('index.php');
+					location.replace(loc);
 				</script>");
 				// exit();
 			}else{

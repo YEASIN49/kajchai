@@ -24,15 +24,15 @@ if (!empty($row)){
 	echo '("Job Fetch Failed")';
 }
 
-if(isset($_POST['back'])){
-	header("<script>location:javascript://history.go(-1)</script>");
-}
+// if(isset($_POST['back'])){
+// 	header("<script>location:javascript://history.go(-1)</script>");
+// }
 
 if(isset($_POST['apply'])){
 	if(!empty($_SESSION['id']) && ($_SESSION['role'] == 'user')){
 		// echo('<script>alert("Currently Logged IN");</script>');
 		// $submitted = true;
-		
+			
 
 			$name       = $_FILES['file']['name'];  
 			$temp_name  = $_FILES['file']['tmp_name'];  
@@ -42,7 +42,13 @@ if(isset($_POST['apply'])){
 					  echo "File- '$name' uploaded successfully ";
 				 }
 			} else {
-				 echo 'You should select a file to upload !!';
+				//  echo '';
+				 echo ('<script> alert("Please upload your CV before applying !!");
+				const loc = window.location.href;
+				</script>');
+				die("<script>
+					location.replace(loc);
+				</script>");
 			}
 	  
 		// $fileaType = $_FILES['file']['type'];
@@ -79,7 +85,8 @@ if(isset($_POST['apply'])){
 
 	}
 	else{
-			echo('<script>alert(" Please Log in as a User First");</script>');
+			echo('<script>alert(" Please Log in as a User First");
+			console.log("inside test 1");</script>');
 	}
 }
 $allStatus;
@@ -189,6 +196,8 @@ showStatus();
 		<h3 class="font-weight-bold my-3">JOB STATUS</h3>
 		<div class="table-responsive-lg pt-2 pb-5 px-4">
 			<h5 class="font-weight-bold mb-2">TOTAL APPLIED : <?php echo($countApplication); ?></h5>
+			<h6 class="font-weight-bold mb-2">JOB ID : <?php echo($_SESSION['jobID']); ?></h6>
+			<h6 class="font-weight-bold mb-2">POSTED BY EMPLOYER WITH ID : <?php echo($_SESSION['id']); ?></h6>
 			<table class="table">
 					<!-- <caption>List of users</caption> -->
 				<thead>
@@ -203,6 +212,7 @@ showStatus();
 				</thead>
 				<tbody>
 					<?php 
+						echo "<script>let statusMsgPrinted = false;</script>";
 						foreach ($allStatus as $row) { 
 						// printf("%s (%s)\n", $row["id"], $row["position"]); ?>	
 						<tr class=" rowDivider">
@@ -213,7 +223,18 @@ showStatus();
 								<td><?php echo ($row['employer_id']);?></td>
 								<td><a href="./uploads/<?php echo ($row['cv']); ?>"><?php echo ($row['cv']); ?></a></td>
 								
-							<?php } ?>	
+							<?php }
+								else{   
+									echo("<script>
+										console.log('entered into status');
+										if(!statusMsgPrinted){
+											statusMsgPrinted = true;
+											document.querySelector('.table').innerHTML='<p style = color:#5867dd;font-weight:bold;>Only Employer who posted this job can view more info.</p>'
+									 	}
+									 	</script>");
+									
+								}
+							?>	
 						</tr>
 					<?php } ?>	
 				</tbody>
@@ -265,5 +286,5 @@ showStatus();
 <?php
 include("login.php");
 include("register.php");
-echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
+// echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
 ?>

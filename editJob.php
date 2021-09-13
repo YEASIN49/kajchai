@@ -1,3 +1,4 @@
+
 <?php 
 include("includes/config.php");
 session_start();
@@ -37,12 +38,12 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 		$salary = $_POST['salary'];
 		$responsibility = $_POST['responsibility'];
 		$requirements = $_POST['requirements'];
-		$location = $_POST['location'];
+		$location = $_POST['loc'];
 		$category = $_POST['category'];
 		$employer_id = $_SESSION['id'];
 	
 		$sql = "UPDATE jobs
-			 SET position = '$position', company = '$company', expertise = '$expertise', experience = '$experience', type='$type', salary = '$salary', responsibility = '$responsibility', requirements = '$requirements' WHERE id = $currentID";
+			 SET position = '$position', company = '$company', expertise = '$expertise', experience = '$experience', type='$type', salary = '$salary', responsibility = '$responsibility', requirements = '$requirements', location = '$location', category = '$category' WHERE id = $currentID";
 		// die($sql);
 		$result=$conn->query($sql);
 	
@@ -55,9 +56,9 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 			echo 'Job Update Failed :(';
 		}
 	}
-	else{
-		echo "Fill all the field";
-	}
+	// else{
+	// 	// echo "Fill all the field";
+	// }
 
 
 // echo '<pre>' . print_r($_SESSION, TRUE) . '</pre>';
@@ -97,41 +98,41 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="">Position :</label> 
-										<input class="form-control" type="text" name="position" value="<?php echo $currentPosition; ?>">
+										<label for="">Position<span class="text-danger">*</span> :</label> 
+										<input required class="form-control" type="text" name="position" value="<?php echo $currentPosition; ?>">
 									</div>
 									<div class="form-group">
-										<label for="">Company Name :</label> 
-										<input class="form-control" type="text" name="company" value="<?php echo $currentCompany; ?>">
+										<label for="">Company Name<span class="text-danger">*</span> :</label> 
+										<input required class="form-control" type="text" name="company" value="<?php echo $currentCompany; ?>">
 									</div>
 									<div class="form-group">
-										<label for="">Expertise Level :</label> 
-										<input class="form-control" type="text" name="expertise" value="<?php echo $currentExpertise; ?>">
+										<label for="">Expertise Level<span class="text-danger">*</span> :</label> 
+										<input required class="form-control" type="text" name="expertise" value="<?php echo $currentExpertise; ?>">
 									</div>
 									<div class="form-group">
-										<label for="">Experience :</label> 
-										<input class="form-control" type="text" name="experience" value="<?php echo $currentExperience; ?>">
+										<label for="">Experience<span class="text-danger">*</span> :</label> 
+										<input required class="form-control" type="text" name="experience" value="<?php echo $currentExperience; ?>">
 									</div>
 									<div class="form-group">
-										<label for="">Type :</label> 
-										<input class="form-control" type="text" name="type" value="<?php echo $currentType; ?>">
+										<label for="">Type<span class="text-danger">*</span> :</label> 
+										<input required class="form-control" type="text" name="type" value="<?php echo $currentType; ?>">
 									</div>
 									<div class="form-group">
-										<label for="">Salary :</label> 
-										<input class="form-control" type="text" name="salary" value="<?php echo $currentSalary; ?>">
+										<label for="">Salary<span class="text-danger">*</span> :</label> 
+										<input required class="form-control" type="text" name="salary" value="<?php echo $currentSalary; ?>">
 									</div>
 									<div class="form-group">
-										<label for="">Location :</label> 
-										<select name="category" id="inputState" class="form-control">
-											<option value="<?php echo $currentLocation; ?>" selected ><?php echo $currentLocation; ?></option>
-											<option selected value='dhaka'>Dhaka</option>
+										<label for="">Location<span class="text-danger">*</span> :</label> 
+										<select required name="loc" class="form-control">
+											<option selected value="<?php echo $currentLocation; ?>" selected ><?php echo $currentLocation; ?></option>
+											<option value='dhaka'>Dhaka</option>
 											<option value='sylhet'>Sylhet</option>
 											<option value='chittagong'>Chittagong</option>
 										</select>
 									</div>
 									<div class="form-group">
-										<label for="">Category :</label> 
-										<select name="category" id="inputState" class="form-control">
+										<label for="">Category<span class="text-danger">*</span> :</label> 
+										<select required name="category"  class="form-control">
 											<option value="<?php echo $currentCategory; ?>" selected ><?php echo $currentCategory; ?></option>
 											<option value='frontend'>Frontend</option>
 											<option value='backend'>Backend</option>
@@ -143,11 +144,11 @@ if(isset($_SESSION['email']) and $_SESSION['role'] == 'employer'){
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="">Responsibilities :</label> 
+										<label for="">Responsibilities<span class="text-danger">*</span> :</label> 
 										<textarea id="responsibility" class="form-control" rows="15" name="responsibility"><?php echo $currentResponsibility; ?></textarea>
 									</div>
 									<div class="form-group">
-										<label for="">Requirements :</label> 
+										<label for="">Requirements<span class="text-danger">*</span> :</label> 
 										<textarea id="requirements" class="form-control" rows="16" name="requirements"><?php echo $currentRequirements; ?></textarea>
 									</div>								
 								</div>
